@@ -14,7 +14,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if(message.role !== 'system') {
                 const messageDiv = document.createElement('div');
                 messageDiv.className = message.role === 'user' ? 'user-message message' : 'assistant-message message';
-                messageDiv.textContent = message.content;
+                // messageDiv.textContent = message.content;
+                // Split message content by line breaks and create div elements for each line
+                const lines = message.content.split('\n');
+                for (const line of lines) {
+                    const lineDiv = document.createElement('div');
+                    lineDiv.textContent = line;
+                    messageDiv.appendChild(lineDiv);
+                }
                 chatHistory.appendChild(messageDiv);
             }
         });
